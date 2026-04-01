@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Rangarr</Name>
+  <Repository>judochinx/rangarr:latest</Repository>
+  <Registry>https://hub.docker.com/r/judochinx/rangarr</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Privileged>false</Privileged>
+  <Support>https://forums.unraid.net/topic/198071-support-judochinx-rangarr</Support>
+  <Project>https://github.com/JudoChinX/rangarr</Project>
+  <Overview>Rangarr is a lightweight orchestration service that automates and staggers media searches across multiple *arr instances (Radarr, Sonarr, Lidarr). It helps keep your library complete without overwhelming your indexers or API limits.
+
+[b]Features:[/b]
+- [b]Multi-Instance Support:[/b] Manage Radarr, Sonarr, and Lidarr from a single service.
+- [b]Smart Staggering:[/b] Prevents "thundering herd" issues by spacing out search requests.
+- [b]Proportional Interleaving:[/b] Balanced searching between missing items and upgrades.
+- [b]Weighted Distribution:[/b] Prioritize specific instances.
+- [b]No Telemetry:[/b] Only communicates with the *arr instances you configure.
+
+[b]Note:[/b] By default, this template is configured using environment variables. You can also use a config.yaml by mapping the /app/config path and changing RANGARR_CONFIG_SOURCE to "file".</Overview>
+  <Category>Tools:Utilities MediaApp:Video MediaApp:Music</Category>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>https://raw.githubusercontent.com/JudoChinX/unraid-templates/main/assets/rangarr-logo.png</Icon>
+  <ExtraParams/>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Description>Rangarr automates and staggers searches across Radarr, Sonarr, and Lidarr.</Description>
+  <Config Name="Config Source" Target="RANGARR_CONFIG_SOURCE" Default="env" Description="Set to 'env' to use environment variables or 'file' to use a config.yaml mount." Type="Variable" Display="always" Required="true" Mask="false">env</Config>
+  <Config Name="Run Interval (Seconds)" Target="RANGARR_GLOBAL_INTERVAL" Default="3600" Description="How often to run the search cycle (e.g., 3600 for every hour)." Type="Variable" Display="always" Required="false" Mask="false">3600</Config>
+  <Config Name="Dry Run" Target="RANGARR_GLOBAL_DRY_RUN" Default="false" Description="If true, Rangarr will log what it would search without actually triggering the search." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+  <Config Name="Stagger Interval (Seconds)" Target="RANGARR_GLOBAL_STAGGER_INTERVAL_SECONDS" Default="30" Description="Seconds to wait between individual search requests." Type="Variable" Display="always" Required="false" Mask="false">30</Config>
+  <Config Name="Missing Batch Size" Target="RANGARR_GLOBAL_MISSING_BATCH_SIZE" Default="20" Description="Max missing items to search per cycle (0 = disabled, -1 = unlimited)." Type="Variable" Display="always" Required="false" Mask="false">20</Config>
+  <Config Name="Upgrade Batch Size" Target="RANGARR_GLOBAL_UPGRADE_BATCH_SIZE" Default="10" Description="Max upgrade-eligible items to search per cycle (0 = disabled, -1 = unlimited)." Type="Variable" Display="always" Required="false" Mask="false">10</Config>
+  <Config Name="Timezone" Target="TZ" Default="UTC" Description="Set your timezone for log timestamps." Type="Variable" Display="advanced" Required="false" Mask="false">UTC</Config>
+  <Config Name="Log Level" Target="LOG_LEVEL" Default="INFO" Description="Set the log level (DEBUG, INFO, WARNING, ERROR)." Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
+
+  <!-- Radarr Instance -->
+  <Config Name="Radarr: Name" Target="RANGARR_INSTANCE_0_NAME" Default="" Description="Display name for this instance." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Radarr: Type" Target="RANGARR_INSTANCE_0_TYPE" Default="radarr" Description="Must be 'radarr'." Type="Variable" Display="always" Required="false" Mask="false">radarr</Config>
+  <Config Name="Radarr: URL" Target="RANGARR_INSTANCE_0_URL" Default="http://radarr:7878" Description="URL to your Radarr instance (use Docker IP or hostname)." Type="Variable" Display="always" Required="false" Mask="false">http://radarr:7878</Config>
+  <Config Name="Radarr: API Key" Target="RANGARR_INSTANCE_0_API_KEY" Default="" Description="Your Radarr API Key." Type="Variable" Display="always" Required="false" Mask="true"></Config>
+
+  <!-- Sonarr Instance -->
+  <Config Name="Sonarr: Name" Target="RANGARR_INSTANCE_1_NAME" Default="" Description="Display name for this instance." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="Sonarr: Type" Target="RANGARR_INSTANCE_1_TYPE" Default="sonarr" Description="Must be 'sonarr'." Type="Variable" Display="advanced" Required="false" Mask="false">sonarr</Config>
+  <Config Name="Sonarr: URL" Target="RANGARR_INSTANCE_1_URL" Default="http://sonarr:8989" Description="URL to your Sonarr instance (use Docker IP or hostname)." Type="Variable" Display="advanced" Required="false" Mask="false">http://sonarr:8989</Config>
+  <Config Name="Sonarr: API Key" Target="RANGARR_INSTANCE_1_API_KEY" Default="" Description="Your Sonarr API Key." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <!-- Lidarr Instance -->
+  <Config Name="Lidarr: Name" Target="RANGARR_INSTANCE_2_NAME" Default="" Description="Display name for this instance." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="Lidarr: Type" Target="RANGARR_INSTANCE_2_TYPE" Default="lidarr" Description="Must be 'lidarr'." Type="Variable" Display="advanced" Required="false" Mask="false">lidarr</Config>
+  <Config Name="Lidarr: URL" Target="RANGARR_INSTANCE_2_URL" Default="http://lidarr:8686" Description="URL to your Lidarr instance (use Docker IP or hostname)." Type="Variable" Display="advanced" Required="false" Mask="false">http://lidarr:8686</Config>
+  <Config Name="Lidarr: API Key" Target="RANGARR_INSTANCE_2_API_KEY" Default="" Description="Your Lidarr API Key." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+
+  <!-- Optional Path Mapping for config.yaml -->
+  <Config Name="AppData Config Path" Target="/app/config" Default="/mnt/user/appdata/rangarr" Mode="rw" Description="Mount point for config.yaml (only needed if RANGARR_CONFIG_SOURCE is 'file')." Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/rangarr</Config>
+</Container>
