@@ -37,6 +37,8 @@
   <Config Name="Upgrade Batch Size" Target="RANGARR_GLOBAL_UPGRADE_BATCH_SIZE" Default="10" Description="Max upgrade-eligible items to search per cycle (0 = disabled, -1 = unlimited)." Type="Variable" Display="always" Required="false" Mask="false">10</Config>
   <Config Name="Timezone" Target="TZ" Default="UTC" Description="Set your timezone for log timestamps." Type="Variable" Display="advanced" Required="false" Mask="false">UTC</Config>
   <Config Name="Log Level" Target="LOG_LEVEL" Default="INFO" Description="Set the log level (DEBUG, INFO, WARNING, ERROR)." Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
+  <Config Name="Search Order" Target="RANGARR_GLOBAL_SEARCH_ORDER" Default="last_searched_ascending" Description="Priority for choosing items (alphabetical_ascending, alphabetical_descending, last_added_ascending, last_added_descending, last_searched_ascending, last_searched_descending, random, release_date_ascending, release_date_descending)." Type="Variable" Display="advanced" Required="false" Mask="false">last_searched_ascending</Config>
+  <Config Name="Search Retry Interval (Days)" Target="RANGARR_GLOBAL_RETRY_INTERVAL_DAYS" Default="30" Description="Days to wait before searching the same item again (0 to disable)." Type="Variable" Display="advanced" Required="false" Mask="false">30</Config>
 
   <!-- Radarr Instance -->
   <Config Name="Radarr: Name" Target="RANGARR_INSTANCE_0_NAME" Default="" Description="Display name for this instance." Type="Variable" Display="always" Required="false" Mask="false"></Config>
@@ -49,6 +51,7 @@
   <Config Name="Sonarr: Type" Target="RANGARR_INSTANCE_1_TYPE" Default="sonarr" Description="Must be 'sonarr'." Type="Variable" Display="advanced" Required="false" Mask="false">sonarr</Config>
   <Config Name="Sonarr: URL" Target="RANGARR_INSTANCE_1_URL" Default="http://sonarr:8989" Description="URL to your Sonarr instance (use Docker IP or hostname)." Type="Variable" Display="advanced" Required="false" Mask="false">http://sonarr:8989</Config>
   <Config Name="Sonarr: API Key" Target="RANGARR_INSTANCE_1_API_KEY" Default="" Description="Your Sonarr API Key." Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+  <Config Name="Sonarr: Search Season Packs" Target="RANGARR_GLOBAL_SEASON_PACKS" Default="false" Description="If true, Sonarr will search for missing/upgrade items as season packs when multiple episodes are needed." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
 
   <!-- Lidarr Instance -->
   <Config Name="Lidarr: Name" Target="RANGARR_INSTANCE_2_NAME" Default="" Description="Display name for this instance." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
