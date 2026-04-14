@@ -39,6 +39,8 @@
   <Config Name="Log Level" Target="LOG_LEVEL" Default="INFO" Description="Set the log level (DEBUG, INFO, WARNING, ERROR)." Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
   <Config Name="Search Order" Target="RANGARR_GLOBAL_SEARCH_ORDER" Default="last_searched_ascending" Description="Priority for choosing items (alphabetical_ascending, alphabetical_descending, last_added_ascending, last_added_descending, last_searched_ascending, last_searched_descending, random, release_date_ascending, release_date_descending)." Type="Variable" Display="advanced" Required="false" Mask="false">last_searched_ascending</Config>
   <Config Name="Search Retry Interval (Days)" Target="RANGARR_GLOBAL_RETRY_INTERVAL_DAYS" Default="30" Description="Days to wait before searching the same item again (0 to disable)." Type="Variable" Display="advanced" Required="false" Mask="false">30</Config>
+  <Config Name="Include Tags" Target="RANGARR_GLOBAL_INCLUDE_TAGS" Default="" Description="Comma-separated list of *arr tag names to include. Only items with at least one matching tag will be searched. Leave blank to include all items." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="Exclude Tags" Target="RANGARR_GLOBAL_EXCLUDE_TAGS" Default="" Description="Comma-separated list of *arr tag names to exclude. Items with any matching tag will be skipped. Leave blank to exclude nothing." Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
 
   <!-- Radarr Instance -->
   <Config Name="Radarr: Name" Target="RANGARR_INSTANCE_0_NAME" Default="" Description="Display name for this instance." Type="Variable" Display="always" Required="false" Mask="false"></Config>
