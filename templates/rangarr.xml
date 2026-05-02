@@ -20,7 +20,7 @@
 [b]Note:[/b] By default, this template is configured using environment variables. You can also use a config.yaml by mapping the /app/config path and changing RANGARR_CONFIG_SOURCE to "file".</Overview>
   <Category>Tools:Utilities MediaApp:Video MediaApp:Music</Category>
   <WebUI/>
-  <TemplateURL/>
+  <TemplateURL>https://raw.githubusercontent.com/JudoChinX/unraid-templates/main/templates/rangarr.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/JudoChinX/unraid-templates/main/assets/rangarr-logo.png</Icon>
   <ExtraParams/>
   <PostArgs/>

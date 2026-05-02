@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>gitlab-runner</Name>
+  <Repository>gitlab/gitlab-runner:latest</Repository>
+  <Registry>https://hub.docker.com/r/gitlab/gitlab-runner</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Privileged>false</Privileged>
+  <Support>https://docs.gitlab.com/runner/</Support>
+  <Project>https://gitlab.com/gitlab-org/gitlab-runner</Project>
+  <Overview>GitLab Runner is the open source project that is used to run your CI/CD jobs and send the results back to GitLab. This template is pre-configured for the Docker executor.
+
+[b]First-run setup:[/b]
+Fill in the GitLab URL, Registration Token, and Runner Name below, then start the container. It will automatically register itself on first boot and start accepting jobs. No manual steps required.</Overview>
+  <Category>Tools:Utilities</Category>
+  <WebUI/>
+  <TemplateURL>https://raw.githubusercontent.com/JudoChinX/unraid-templates/main/templates/gitlab-runner.xml</TemplateURL>
+  <Icon>https://about.gitlab.com/images/press/gitlab-logo-500-rgb.png</Icon>
+  <ExtraParams>--entrypoint /bin/sh</ExtraParams>
+  <PostArgs>-c 'if [ ! -f /etc/gitlab-runner/config.toml ]; then gitlab-runner register --non-interactive --url "$GITLAB_URL" --registration-token "$GITLAB_TOKEN" --name "$RUNNER_NAME" --executor docker --docker-image alpine:latest --request-concurrency 2 &amp;&amp; sed -i "s/^concurrent = [0-9]*/concurrent = 2/" /etc/gitlab-runner/config.toml; fi; exec gitlab-runner run --user=gitlab-runner --working-directory=/home/gitlab-runner'</PostArgs>
+  <CPUset/>
+  <DateInstalled/>
+  <DonateText/>
+  <DonateLink/>
+  <Description>GitLab Runner for executing CI/CD jobs.</Description>
+
+  <!-- Essential Variables -->
+  <Config Name="GitLab URL" Target="GITLAB_URL" Default="https://gitlab.com/" Description="The URL of your GitLab instance." Type="Variable" Display="always" Required="true" Mask="false">https://gitlab.com/</Config>
+  <Config Name="Registration Token" Target="GITLAB_TOKEN" Default="" Description="The registration token from your GitLab project or instance." Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="Runner Name" Target="RUNNER_NAME" Default="unraid-runner" Description="A descriptive name for this runner." Type="Variable" Display="always" Required="true" Mask="false">unraid-runner</Config>
+  <Config Name="Timezone" Target="TZ" Default="UTC" Description="Set your timezone for logs." Type="Variable" Display="advanced" Required="false" Mask="false">UTC</Config>
+
+  <!-- Storage & Docker Access -->
+  <Config Name="AppData Config Path" Target="/etc/gitlab-runner" Default="/mnt/user/appdata/gitlab-runner" Mode="rw" Description="Path to store the runner configuration." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/gitlab-runner</Config>
+  <Config Name="Docker Socket" Target="/var/run/docker.sock" Default="/var/run/docker.sock" Mode="rw" Description="Required for the Docker executor to spawn job containers." Type="Path" Display="always" Required="true" Mask="false">/var/run/docker.sock</Config>
+</Container>
