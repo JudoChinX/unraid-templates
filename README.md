@@ -17,7 +17,7 @@ To use these templates in your Unraid server:
 ### [Rangarr](https://github.com/JudoChinX/rangarr)
 
 <p align="center">
-  <img src="assets/rangarr-logo.png" />
+  <img src="assets/rangarr-logo.png" width="256" />
 </p>
 
 **Rangarr** is a lightweight orchestration service that automates and staggers media searches across multiple *arr instances (Radarr, Sonarr, Lidarr). It helps keep your library complete without overwhelming your indexers or API limits.
@@ -28,6 +28,10 @@ To use these templates in your Unraid server:
 - **Documentation:** [User Guide](https://github.com/JudoChinX/rangarr/blob/main/docs/user-guide.md)
 
 ### [GitLab Runner](https://gitlab.com/gitlab-org/gitlab-runner)
+
+<p align="center">
+  <img src="https://about.gitlab.com/images/press/gitlab-logo-500-rgb.png" width="256" />
+</p>
 
 **GitLab Runner** is the open source agent that executes CI/CD jobs and sends results back to GitLab. This template is pre-configured for the Docker executor and auto-registers on first boot using the URL, token, and name you provide.
 
